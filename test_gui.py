@@ -46,5 +46,12 @@ class HelloWorldPanel(bpy.types.Panel):
             row.prop(act.text_anim[0], 'spacing_offset')
             row.prop(act.text_anim[0], 'spacing_type', text='')
             row = layout.row()
-            row.prop(act.text_anim[0], 'custom_node_data_start')
-            row.prop(act.text_anim[0], 'custom_node_data_end')
+            row.prop(act.text_anim[0], 'custom_node_data_base')
+            row.prop(act.text_anim[0], 'custom_node_data_target')
+            row = layout.row()
+            row.prop(act.text_anim[0], 'unified_scale_toggle', text='')
+            row.prop(act.text_anim[0], 'scale_offset', text='')
+            if act.text_anim[0].unified_scale_toggle==True:
+                row.prop(act.text_anim[0], 'scale_unified', text='')
+            else:
+                row.prop(act.text_anim[0], 'scale', text='')

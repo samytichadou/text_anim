@@ -73,4 +73,4 @@ def unregister():
     del bpy.types.Object.text_anim
     
     #handler
-    bpy.app.handlers.frame_change_post.remove(text_anim_handler)
+    bpy.app.handlers.frame_change_post.remove(text_anim_handler)    
