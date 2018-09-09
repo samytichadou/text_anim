@@ -1,6 +1,6 @@
 import bpy
 
-from .misc_functions import get_list_from_controller
+from .misc_functions import get_list_from_controller, change_object_index
 from .evaluation_functions import evaluation_linear_pct
 
 #update main
@@ -10,9 +10,13 @@ def update_fct_main(self, context):
     #get influences
     inf_list=evaluation_linear_pct(controller)
     
+    #get object list
+    obj_list=get_list_from_controller(controller)
+    
     #do things
-    loc_list=update_char_position(controller, inf_list)
-    update_char_spacing(controller, loc_list, inf_list)
+    loc_list=update_char_position(controller, obj_list, inf_list)
+    update_char_spacing(controller, obj_list, loc_list, inf_list)
+    update_data_value(controller, obj_list, inf_list)
 
 #update function for char spacing
 def update_fct_char_spacing(self, context):
@@ -20,10 +24,8 @@ def update_fct_char_spacing(self, context):
     update_char_spacing(controller)
 
 #update char position
-def update_char_position(controller, inf_list):
+def update_char_position(controller, obj_list, inf_list):
     new_loc_list=[]
-    
-    obj_list=get_list_from_controller(controller)
     
     for i in range(0, len(obj_list)):
         obj=obj_list[i]
@@ -45,16 +47,14 @@ def update_char_position(controller, inf_list):
     return new_loc_list
         
 #update char spacing
-def update_char_spacing(controller, loc_list, inf_list):
+def update_char_spacing(controller, obj_list, loc_list, inf_list):
     
     bpy.context.scene.update()
-    
-    obj_list=get_list_from_controller(controller)
     
     spacing=controller.text_anim[0].spacing
     previous=obj_list[0].location[0]
     offset=0
-    previous=0
+
     if controller.text_anim[0].spacing_type=='LEFT':
         for i in range(0,len(obj_list)):
             inf=inf_list[i]
@@ -77,10 +77,21 @@ def update_char_spacing(controller, loc_list, inf_list):
             previous=obj.location[0]
             
             #place chars
-            obj.location[0]=loc_list[i][0]-((spacing*(len(obj_list)-1-i)-offset)*inf)+offset
+            obj.location[0]=loc_list[i][0]-((spacing*(len(obj_list)-1-i))*inf)-(offset-(offset*inf))
             
             if controller.text_anim[0].spacing_offset==True:
-                offset=obj.location[0]-previous
+                offset=previous-obj.location[0]
             else:
                 offset=0
+
+#update data value
+def update_data_value(controller, obj_list, inf_list):
             
+    for i in range(0,len(obj_list)):
+        inf=inf_list[i]
+        obj=obj_list[i]
+        
+        #map value
+        value=inf
+        change_object_index(value, obj)
+        

@@ -108,3 +108,7 @@ def get_list_from_controller(controller):
             pass
     sorted_list = sorted(object_list, key=lambda x: x.data.text_anim[0].index, reverse=False)
     return sorted_list
+
+#update object index
+def change_object_index(value, object):
+    object.pass_index = value*1000

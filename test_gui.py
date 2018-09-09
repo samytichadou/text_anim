@@ -35,7 +35,7 @@ class HelloWorldPanel(bpy.types.Panel):
             row.label(str(act.data.text_anim[0].index))
             row = layout.row()
             row.label(act.data.text_anim[0].controller)
-        
+                    
         else:
             row.prop(act.text_anim[0], 'start_pct', slider=True)
             row.prop(act.text_anim[0], 'end_pct', slider=True)
@@ -45,3 +45,6 @@ class HelloWorldPanel(bpy.types.Panel):
             row.prop(act.text_anim[0], 'spacing')
             row.prop(act.text_anim[0], 'spacing_offset')
             row.prop(act.text_anim[0], 'spacing_type', text='')
+            row = layout.row()
+            row.prop(act.text_anim[0], 'custom_node_data_start')
+            row.prop(act.text_anim[0], 'custom_node_data_end')
