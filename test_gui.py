@@ -1,6 +1,6 @@
 import bpy
 
-class HelloWorldPanel(bpy.types.Panel):
+class TextAnimTestGUI(bpy.types.Panel):
     bl_idname = "textanim.test_gui"
     bl_label = "TextAnim"
     bl_space_type = "VIEW_3D"
@@ -37,6 +37,7 @@ class HelloWorldPanel(bpy.types.Panel):
             row.label(act.data.text_anim[0].controller)
                     
         else:
+            row = layout.row()
             row.prop(act.text_anim[0], 'start_pct', slider=True)
             row.prop(act.text_anim[0], 'end_pct', slider=True)
             row = layout.row()
@@ -55,3 +56,24 @@ class HelloWorldPanel(bpy.types.Panel):
                 row.prop(act.text_anim[0], 'scale_unified', text='')
             else:
                 row.prop(act.text_anim[0], 'scale', text='')
+            
+            #animations
+            row = layout.row()
+            row.operator('textanim.new_animation')
+            try:
+                idx=-1
+                for i in act.text_anim[0].animations:
+                    idx+=1
+                    box=layout.box()
+                    row=box.row(align=True)
+                    row.prop(i, 'hidden', text='', icon='VISIBLE_IPO_ON', emboss=False)
+                    row.prop(i, 'name')
+                    op = row.operator('textanim.move_animation', icon='TRIA_DOWN', text="")
+                    op.action='DOWN'
+                    op.indx=idx
+                    op = row.operator('textanim.move_animation', icon='TRIA_UP', text="")
+                    op.action='UP'
+                    op.indx=idx
+                    
+            except IndexError:
+                pass
