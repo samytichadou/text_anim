@@ -16,9 +16,11 @@ class TextAnimFontPropsColl(bpy.types.PropertyGroup):
 ### ANIMATIONS ###
 class TextAnimAnimationColl(bpy.types.PropertyGroup):
     
-    hidden = bpy.props.BoolProperty(default=True)
-    
     ### animation ###
+    
+    #misc
+    hidden = bpy.props.BoolProperty(name="Hidden", default=False)
+    active = bpy.props.BoolProperty(name="Active", default=True)
     
     #range
     start_pct = bpy.props.IntProperty(name="Start", default=0, min=0, max=100, update=update_fct_main)
