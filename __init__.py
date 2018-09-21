@@ -1,8 +1,8 @@
 '''
-Copyright (C) 2018 YOUR NAME
-YOUR@MAIL.com
+Copyright (C) 2018 Samy Tichadou (tonton)
+samytichadou@gmail.com
 
-Created by YOUR NAME
+Created by Samy Tichadou (tonton)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,9 +19,9 @@ Created by YOUR NAME
 '''
 
 bl_info = {
-    "name": "Your Addon Name",
+    "name": "TextAnim",
     "description": "",
-    "author": "Your Name",
+    "author": "Samy Tichadou (tonton)",
     "version": (0, 0, 1),
     "blender": (2, 79, 0),
     "location": "View3D",
@@ -73,4 +73,4 @@ def unregister():
     del bpy.types.Object.text_anim
     
     #handler
-    bpy.app.handlers.frame_change_post.remove(text_anim_handler)
+    bpy.app.handlers.frame_change_post.remove(text_anim_handler)    
