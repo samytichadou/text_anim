@@ -37,12 +37,8 @@ class TextAnimTestGUI(bpy.types.Panel):
             row.label(act.data.text_anim[0].controller)
                     
         else:
-<<<<<<< HEAD
             layout.prop(act.text_anim[0], 'test_switch', text='test')
             row = layout.row(align=True)
-=======
-            row = layout.row()
->>>>>>> de4d4f1b51529b395af4e324a87e6628d03c7c16
             row.prop(act.text_anim[0], 'start_pct', slider=True)
             row.prop(act.text_anim[0], 'end_pct', slider=True)
             
@@ -77,21 +73,6 @@ class TextAnimTestGUI(bpy.types.Panel):
             
             #animations
             row = layout.row()
-<<<<<<< HEAD
-=======
-            row.prop(act.text_anim[0], 'custom_node_data_base')
-            row.prop(act.text_anim[0], 'custom_node_data_target')
-            row = layout.row()
-            row.prop(act.text_anim[0], 'unified_scale_toggle', text='')
-            row.prop(act.text_anim[0], 'scale_offset', text='')
-            if act.text_anim[0].unified_scale_toggle==True:
-                row.prop(act.text_anim[0], 'scale_unified')
-            else:
-                row.prop(act.text_anim[0], 'scale')
-            
-            #animations
-            row = layout.row()
->>>>>>> de4d4f1b51529b395af4e324a87e6628d03c7c16
             row.operator('textanim.new_animation')
             try:
                 idx=-1
@@ -122,7 +103,6 @@ class TextAnimTestGUI(bpy.types.Panel):
                     # Animation details
                     
                     if i.hidden==False:
-<<<<<<< HEAD
                         
                         row = box.row(align=True)
                         row.prop(i, 'start_pct', slider=True)
@@ -160,28 +140,5 @@ class TextAnimTestGUI(bpy.types.Panel):
                         row.prop(i, 'custom_node_data_target', text='Target')
                         
                                                 
-=======
-                        box2=box.box()
-                        row = box2.row()
-                        row.prop(i, 'start_pct', slider=True)
-                        row.prop(i, 'end_pct', slider=True)
-                        row = box2.row()
-                        row.prop(i, 'location', text="")
-                        row = box2.row()
-                        row.prop(i, 'spacing')
-                        row.prop(i, 'spacing_offset')
-                        row.prop(i, 'spacing_type', text='')
-                        row = box2.row()
-                        row.prop(i, 'custom_node_data_base')
-                        row.prop(i, 'custom_node_data_target')
-                        row = box2.row()
-                        row.prop(i, 'unified_scale_toggle', text='')
-                        row.prop(i, 'scale_offset', text='')
-                        if i.unified_scale_toggle==True:
-                            row.prop(i, 'scale_unified')
-                        else:
-                            row.prop(i, 'scale')
-                        
->>>>>>> de4d4f1b51529b395af4e324a87e6628d03c7c16
             except IndexError:
                 pass
