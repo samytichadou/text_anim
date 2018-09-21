@@ -65,6 +65,8 @@ def update_char_spacing(controller, obj_list, loc_list, inf_list):
             #place chars
             obj.location[0]=loc_list[i][0]+((spacing*i-offset)*inf)+offset
             
+            #bpy.context.scene.update()
+            
             if controller.text_anim[0].spacing_offset==True:
                 offset=obj.location[0]-previous
             else:
@@ -77,6 +79,8 @@ def update_char_spacing(controller, obj_list, loc_list, inf_list):
             previous=obj.location[0]
             #place chars
             obj.location[0]=loc_list[i][0]-((spacing*(len(obj_list)-1-i))*inf)-(offset-(offset*inf))
+            
+            #bpy.context.scene.update()
             
             if controller.text_anim[0].spacing_offset==True:
                 offset=previous-obj.location[0]
@@ -117,6 +121,7 @@ def update_char_scale(controller, obj_list, inf_list):
         y=scale[1]*(1-inf)+newscale[1]
         z=scale[2]*(1-inf)+newscale[2]
                 
+<<<<<<< HEAD
         obj.scale=(x,y,z)
         
         #add offset
@@ -129,3 +134,6 @@ def update_char_scale(controller, obj_list, inf_list):
             lz=loc[2]
             
             obj.location=(lx,ly,lz)
+=======
+        obj.scale=(x,y,z)
+>>>>>>> de4d4f1b51529b395af4e324a87e6628d03c7c16

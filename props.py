@@ -44,7 +44,11 @@ class TextAnimAnimationColl(bpy.types.PropertyGroup):
     scale = bpy.props.FloatVectorProperty(name="Scale", default=[1,1,1], update=update_fct_main)
     unified_scale_toggle = bpy.props.BoolProperty(name="Unified", default=True, update=update_fct_main)
     scale_unified = bpy.props.FloatProperty(name="Scale", default=1, update=update_fct_main)
+<<<<<<< HEAD
     scale_offset = bpy.props.BoolProperty(name="Offset", default=True, update=update_fct_main)
+=======
+    scale_offset = bpy.props.BoolProperty(name="Offset", default=False, update=update_fct_main)
+>>>>>>> de4d4f1b51529b395af4e324a87e6628d03c7c16
     
 
 ### CONTROLLER ###
@@ -54,6 +58,7 @@ class TextAnimEmptyPropsColl(bpy.types.PropertyGroup):
     body = bpy.props.StringProperty()
     animations = bpy.props.CollectionProperty(type=TextAnimAnimationColl, name='Animations')
     animation_index = bpy.props.IntProperty()
+<<<<<<< HEAD
     
     ### switch between test and real anim system ###
     
@@ -61,6 +66,10 @@ class TextAnimEmptyPropsColl(bpy.types.PropertyGroup):
     
     ### animation props for testing purposes ###
     
+=======
+    
+    ### animation props for testing purposes ###
+>>>>>>> de4d4f1b51529b395af4e324a87e6628d03c7c16
     
     #range
     start_pct = bpy.props.IntProperty(name="Start", default=0, min=0, max=100, update=update_fct_main)
@@ -84,4 +93,8 @@ class TextAnimEmptyPropsColl(bpy.types.PropertyGroup):
     scale = bpy.props.FloatVectorProperty(name="Scale", default=[1,1,1], update=update_fct_main)
     unified_scale_toggle = bpy.props.BoolProperty(name="Unified", default=True, update=update_fct_main)
     scale_unified = bpy.props.FloatProperty(name="Scale", default=1, update=update_fct_main)
+<<<<<<< HEAD
     scale_offset = bpy.props.BoolProperty(name="Offset", default=True, update=update_fct_main)
+=======
+    scale_offset = bpy.props.BoolProperty(name="Offset", default=False, update=update_fct_main)
+>>>>>>> de4d4f1b51529b395af4e324a87e6628d03c7c16
