@@ -10,16 +10,24 @@ def handler_update_main():
         if len(ob.text_anim)!=0:
             controller=ob
             
-            #do something
-            
-            #get influences
-            inf_list=evaluation_linear_pct(controller)
-            
             #get object list
             obj_list=get_list_from_controller(controller)
             
+            #return anims from controller
+            anim_list=[]
+            try:
+                for anim in controller.text_anim[0].animations:
+                    anim_list.append(anim)
+            except IndexError:
+                break
+            
+            for a in anim_list:
+
+            #get influences
+                inf_list=evaluation_linear_pct(controller)
+                
             #do things
-            loc_list=update_char_position(controller, obj_list, inf_list)
-            update_char_spacing(controller, obj_list, loc_list, inf_list)
-            update_data_value(controller, obj_list, inf_list)
-            update_char_scale(controller, obj_list, inf_list)
+                loc_list=update_char_position(controller, obj_list, inf_list)
+                update_char_spacing(controller, obj_list, loc_list, inf_list)
+                update_data_value(controller, obj_list, inf_list)
+                update_char_scale(controller, obj_list, inf_list)

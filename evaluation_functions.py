@@ -48,5 +48,3 @@ def evaluation_linear_pct(controller):
 #        print(str(inf))
         
     return inf_list
-    
-    

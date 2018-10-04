@@ -37,39 +37,40 @@ class TextAnimTestGUI(bpy.types.Panel):
             row.label(act.data.text_anim[0].controller)
                     
         else:
-            layout.prop(act.text_anim[0], 'test_switch', text='test')
-            row = layout.row(align=True)
-            row.prop(act.text_anim[0], 'start_pct', slider=True)
-            row.prop(act.text_anim[0], 'end_pct', slider=True)
-            
-            box=layout.box()
-            row = box.row(align=True)
-            row.label('Location')
-            row.prop(act.text_anim[0], 'location', text="")
-            
-            box=layout.box()
-            row = box.row(align=True)
-            row.label('Scale')
-            row.prop(act.text_anim[0], 'scale_offset', text='', icon='NOCURVE')
-            row.separator()
-            if act.text_anim[0].unified_scale_toggle==True:
-                row.prop(act.text_anim[0], 'scale_unified', text='')
-            else:
-                row.prop(act.text_anim[0], 'scale', text='')
-            row.prop(act.text_anim[0], 'unified_scale_toggle', text='', icon='MANIPUL')
+            layout.prop(act.text_anim[0], 'test_switch', text='anim_test')
+            if act.text_anim[0].test_switch==True:
+                row = layout.row(align=True)
+                row.prop(act.text_anim[0], 'start_pct', slider=True)
+                row.prop(act.text_anim[0], 'end_pct', slider=True)
                 
-            box=layout.box()
-            row = box.row(align=False)
-            row.label('Spacing')
-            row.prop(act.text_anim[0], 'spacing_offset', text='', icon='NOCURVE')
-            row.prop(act.text_anim[0], 'spacing_type', text='')
-            row.prop(act.text_anim[0], 'spacing', text='')
-            
-            box=layout.box()
-            row = box.row(align=True)
-            row.label('Node')
-            row.prop(act.text_anim[0], 'custom_node_data_base', text='Base')
-            row.prop(act.text_anim[0], 'custom_node_data_target', text='Target')
+                box=layout.box()
+                row = box.row(align=True)
+                row.label('Location')
+                row.prop(act.text_anim[0], 'location', text="")
+                
+                box=layout.box()
+                row = box.row(align=True)
+                row.label('Scale')
+                row.prop(act.text_anim[0], 'scale_offset', text='', icon='NOCURVE')
+                row.separator()
+                if act.text_anim[0].unified_scale_toggle==True:
+                    row.prop(act.text_anim[0], 'scale_unified', text='')
+                else:
+                    row.prop(act.text_anim[0], 'scale', text='')
+                row.prop(act.text_anim[0], 'unified_scale_toggle', text='', icon='MANIPUL')
+                    
+                box=layout.box()
+                row = box.row(align=False)
+                row.label('Spacing')
+                row.prop(act.text_anim[0], 'spacing_offset', text='', icon='NOCURVE')
+                row.prop(act.text_anim[0], 'spacing_type', text='')
+                row.prop(act.text_anim[0], 'spacing', text='')
+                
+                box=layout.box()
+                row = box.row(align=True)
+                row.label('Node')
+                row.prop(act.text_anim[0], 'custom_node_data_base', text='Base')
+                row.prop(act.text_anim[0], 'custom_node_data_target', text='Target')
             
             #animations
             row = layout.row()
