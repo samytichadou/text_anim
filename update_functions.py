@@ -32,10 +32,10 @@ def update_fct_main(self, context):
 ### TODO ####
     # adapter fonctions update pour les différentes animations
 
-#update function for char spacing
-def update_fct_char_spacing(self, context):
-    controller=context.active_object
-    update_char_spacing(controller)
+##update function for char spacing
+#def update_fct_char_spacing(self, context):
+#    controller=context.active_object
+#    update_char_spacing(controller)
 
 #update char position
 def update_char_position(controller, obj_list, inf_list):
