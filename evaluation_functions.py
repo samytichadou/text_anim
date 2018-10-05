@@ -2,14 +2,12 @@ import bpy
 
 from .misc_functions import get_list_from_controller
 
-def evaluation_linear_pct(controller):
+def evaluation_linear_pct(animation, object_list):
     inf_list=[]
-    props=controller.text_anim[0]
-    object_list=get_list_from_controller(controller)
-    
+        
     lgt=len(object_list)
-    start=props.start_pct/100
-    end=props.end_pct/100
+    start=animation.start_pct/100
+    end=animation.end_pct/100
     
     coef=100/lgt/100
     
