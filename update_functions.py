@@ -16,7 +16,7 @@ def update_fct_main(self, context):
         for anim in controller.text_anim[0].animations:
             anim_list.append(anim)
     except IndexError:
-        break
+        pass
 
     for a in anim_list:
     #get influences
