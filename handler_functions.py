@@ -17,7 +17,8 @@ def handler_update_main():
             anim_list=[]
             try:
                 for anim in controller.text_anim[0].animations:
-                    anim_list.append(anim)
+                    if anim.active==True:
+                        anim_list.append(anim)
             except IndexError:
                 pass
             
