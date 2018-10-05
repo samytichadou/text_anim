@@ -20,7 +20,7 @@ def update_fct_main(self, context):
 
     for a in anim_list:
     #get influences
-        inf_list=evaluation_linear_pct(a)
+        inf_list=evaluation_linear_pct(a, obj_list)
         
     #do things
         loc_list=update_char_position(a, obj_list, inf_list)
