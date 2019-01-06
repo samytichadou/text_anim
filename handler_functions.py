@@ -17,17 +17,18 @@ def handler_update_main():
             anim_list=[]
             try:
                 for anim in controller.text_anim[0].animations:
-                    anim_list.append(anim)
+                    if anim.active==True:
+                        anim_list.append(anim)
             except IndexError:
-                break
+                pass
             
             for a in anim_list:
 
             #get influences
-                inf_list=evaluation_linear_pct(controller)
+                inf_list=evaluation_linear_pct(a, obj_list)
                 
             #do things
-                loc_list=update_char_position(controller, obj_list, inf_list)
-                update_char_spacing(controller, obj_list, loc_list, inf_list)
-                update_data_value(controller, obj_list, inf_list)
-                update_char_scale(controller, obj_list, inf_list)
+                loc_list=update_char_position(a, obj_list, inf_list)
+                update_char_spacing(a, obj_list, loc_list, inf_list)
+                update_data_value(a, obj_list, inf_list)
+                update_char_scale(a, obj_list, inf_list)
