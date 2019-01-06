@@ -1,5 +1,7 @@
 import bpy
 
+from .update_functions import update_fct_main
+
 # New animation
 class TextAnimNewAnimation(bpy.types.Operator):
     bl_idname = "textanim.new_animation"
@@ -23,6 +25,9 @@ class TextAnimNewAnimation(bpy.types.Operator):
         
         #add
         prop=props.animations.add()
+
+        #check update
+        update_fct_main(self, context)
         
         return {"FINISHED"}
     
@@ -50,9 +55,12 @@ class TextAnimDeletenimation(bpy.types.Operator):
         controller=context.active_object
         props = controller.text_anim[0]
         
-        #add
+        #delete
         prop=props.animations.remove(self.indx)
         
+        #reset
+        update_fct_main(self, context)
+
         return {"FINISHED"}
 
 # Change Animation Order

@@ -19,6 +19,10 @@ def update_fct_main(self, context):
     except IndexError:
         pass
 
+    if len(anim_list)==0 :        
+        #reset
+        update_char_reset(controller, obj_list)
+        
     for a in anim_list:
     #get influences
         inf_list=evaluation_linear_pct(a, controller)
@@ -152,3 +156,12 @@ def update_char_scale(animation, controller, obj_list, inf_list):
             lz=loc[2]
             
             obj.location=(lx,ly,lz)
+
+#reset
+def update_char_reset(controller, obj_list):
+    for obj in obj_list:
+        #loc
+        obj.location = obj.data.text_anim[0].original_location
+        #scale
+        obj.scale = obj.data.text_anim[0].original_scale
+        
