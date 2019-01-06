@@ -16,21 +16,21 @@ def update_fct_main(self, context):
         for anim in controller.text_anim[0].animations:
             anim_list.append(anim)
     except IndexError:
-        break
+        pass
 
     for a in anim_list:
     #get influences
-        inf_list=evaluation_linear_pct(controller)
+        inf_list=evaluation_linear_pct(a, controller)
         
     #do things
-        loc_list=update_char_position(controller, obj_list, inf_list)
-        update_char_spacing(controller, obj_list, loc_list, inf_list)
-        update_data_value(controller, obj_list, inf_list)
-        update_char_scale(controller, obj_list, inf_list)
+        loc_list=update_char_position(a, controller, obj_list, inf_list)
+        update_char_spacing(a, controller, obj_list, loc_list, inf_list)
+        update_data_value(a, controller, obj_list, inf_list)
+        update_char_scale(a, controller, obj_list, inf_list)
 
 
 ### TODO ####
-    # adapter fonctions update pour les différentes animations
+    # adapter fonctions update pour les diffï¿½rentes animations
 
 ##update function for char spacing
 #def update_fct_char_spacing(self, context):
@@ -38,7 +38,7 @@ def update_fct_main(self, context):
 #    update_char_spacing(controller)
 
 #update char position
-def update_char_position(controller, obj_list, inf_list):
+def update_char_position(animation, controller, obj_list, inf_list):
     new_loc_list=[]
     
     for i in range(0, len(obj_list)):
@@ -46,7 +46,8 @@ def update_char_position(controller, obj_list, inf_list):
         inf=inf_list[i]
         
         loc=obj.data.text_anim[0].original_location
-        tarloc=controller.text_anim[0].location
+        #tarloc=controller.text_anim[0].location
+        tarloc=animation.location
         
         newloc=(tarloc[0]*inf, tarloc[1]*inf, tarloc[2]*inf)
         
@@ -61,13 +62,15 @@ def update_char_position(controller, obj_list, inf_list):
     return new_loc_list
         
 #update char spacing
-def update_char_spacing(controller, obj_list, loc_list, inf_list):
+def update_char_spacing(animation, controller, obj_list, loc_list, inf_list):
     
-    spacing=controller.text_anim[0].spacing
+    #spacing=controller.text_anim[0].spacing
+    spacing=animation.spacing
     previous=obj_list[0].location[0]
     offset=0
 
-    if controller.text_anim[0].spacing_type=='LEFT':
+    #if controller.text_anim[0].spacing_type=='LEFT':
+    if animation.spacing_type=='LEFT':
         for i in range(0,len(obj_list)):
             inf=inf_list[i]
             obj=obj_list[i]
@@ -76,7 +79,8 @@ def update_char_spacing(controller, obj_list, loc_list, inf_list):
             #place chars
             obj.location[0]=loc_list[i][0]+((spacing*i-offset)*inf)+offset
             
-            if controller.text_anim[0].spacing_offset==True:
+            #if controller.text_anim[0].spacing_offset==True:
+            if animation.spacing_offset==True:
                 offset=obj.location[0]-previous
             else:
                 offset=0
@@ -89,16 +93,19 @@ def update_char_spacing(controller, obj_list, loc_list, inf_list):
             #place chars
             obj.location[0]=loc_list[i][0]-((spacing*(len(obj_list)-1-i))*inf)-(offset-(offset*inf))
             
-            if controller.text_anim[0].spacing_offset==True:
+            #if controller.text_anim[0].spacing_offset==True:
+            if animation.spacing_offset==True:
                 offset=previous-obj.location[0]
             else:
                 offset=0
 
 #update data value
-def update_data_value(controller, obj_list, inf_list):
+def update_data_value(animation, controller, obj_list, inf_list):
     props=controller.text_anim[0]
-    min=props.custom_node_data_base
-    max=props.custom_node_data_target
+    #min=props.custom_node_data_base
+    #max=props.custom_node_data_target
+    min=animation.custom_node_data_base
+    max=animation.custom_node_data_target
     
     for i in range(0,len(obj_list)):
         inf=inf_list[i]
@@ -109,17 +116,20 @@ def update_data_value(controller, obj_list, inf_list):
         change_object_index(value, obj)
         
 #update char scale
-def update_char_scale(controller, obj_list, inf_list):
+def update_char_scale(animation, controller, obj_list, inf_list):
     for i in range(0, len(obj_list)):
         obj=obj_list[i]
         inf=inf_list[i]
         
         scale=obj.data.text_anim[0].original_scale
         
-        if controller.text_anim[0].unified_scale_toggle==False:
-            tarscale=controller.text_anim[0].scale
+        #if controller.text_anim[0].unified_scale_toggle==False:
+        if animation.unified_scale_toggle==False:
+            #tarscale=controller.text_anim[0].scale
+            tarscale=animation.scale
         else:
-            unif=controller.text_anim[0].scale_unified
+            #unif=controller.text_anim[0].scale_unified
+            unif=animation.scale_unified
             tarscale=[unif,unif,unif]
         
         newscale=(tarscale[0]*inf, tarscale[1]*inf, tarscale[2]*inf)
@@ -131,7 +141,8 @@ def update_char_scale(controller, obj_list, inf_list):
         obj.scale=(x,y,z)
         
         #add offset
-        if controller.text_anim[0].scale_offset==True:
+        #if controller.text_anim[0].scale_offset==True:
+        if animation.scale_offset==True:
             
             loc=obj.location
                         
