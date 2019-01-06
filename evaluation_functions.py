@@ -2,18 +2,12 @@ import bpy
 
 from .misc_functions import get_list_from_controller
 
-<<<<<<< HEAD
 def evaluation_linear_pct(animation, controller):
     inf_list=[]
     #props=controller.text_anim[0]
     props=animation
     object_list=get_list_from_controller(controller)
     
-=======
-def evaluation_linear_pct(animation, object_list):
-    inf_list=[]
-        
->>>>>>> 58ccfa2398bdfa15235c0310db66291be0583dd3
     lgt=len(object_list)
     start=animation.start_pct/100
     end=animation.end_pct/100
