@@ -61,6 +61,8 @@ def register():
     
     #handler
     bpy.app.handlers.frame_change_post.append(text_anim_handler)
+    #handler to fix to get animation frame 1 updated
+    #bpy.app.handlers.render_pre.append(text_anim_handler)
     
 def unregister():
     try: bpy.utils.unregister_module(__name__)
@@ -74,3 +76,5 @@ def unregister():
     
     #handler
     bpy.app.handlers.frame_change_post.remove(text_anim_handler)    
+    #handler to fix to get animation frame 1 updated
+    #bpy.app.handlers.render_pre.remove(text_anim_handler)

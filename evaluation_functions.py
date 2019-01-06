@@ -5,7 +5,6 @@ from .misc_functions import get_list_from_controller
 def evaluation_linear_pct(animation, controller):
     inf_list=[]
     #props=controller.text_anim[0]
-    props=animation
     object_list=get_list_from_controller(controller)
     
     lgt=len(object_list)

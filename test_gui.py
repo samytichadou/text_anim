@@ -36,42 +36,7 @@ class TextAnimTestGUI(bpy.types.Panel):
             row = layout.row()
             row.label(act.data.text_anim[0].controller)
                     
-        else:
-            layout.prop(act.text_anim[0], 'test_switch', text='anim_test')
-            if act.text_anim[0].test_switch==True:
-                row = layout.row(align=True)
-                row.prop(act.text_anim[0], 'start_pct', slider=True)
-                row.prop(act.text_anim[0], 'end_pct', slider=True)
-                
-                box=layout.box()
-                row = box.row(align=True)
-                row.label('Location')
-                row.prop(act.text_anim[0], 'location', text="")
-                
-                box=layout.box()
-                row = box.row(align=True)
-                row.label('Scale')
-                row.prop(act.text_anim[0], 'scale_offset', text='', icon='NOCURVE')
-                row.separator()
-                if act.text_anim[0].unified_scale_toggle==True:
-                    row.prop(act.text_anim[0], 'scale_unified', text='')
-                else:
-                    row.prop(act.text_anim[0], 'scale', text='')
-                row.prop(act.text_anim[0], 'unified_scale_toggle', text='', icon='MANIPUL')
-                    
-                box=layout.box()
-                row = box.row(align=False)
-                row.label('Spacing')
-                row.prop(act.text_anim[0], 'spacing_offset', text='', icon='NOCURVE')
-                row.prop(act.text_anim[0], 'spacing_type', text='')
-                row.prop(act.text_anim[0], 'spacing', text='')
-                
-                box=layout.box()
-                row = box.row(align=True)
-                row.label('Node')
-                row.prop(act.text_anim[0], 'custom_node_data_base', text='Base')
-                row.prop(act.text_anim[0], 'custom_node_data_target', text='Target')
-            
+        else:    
             #animations
             row = layout.row()
             row.operator('textanim.new_animation')
@@ -108,37 +73,51 @@ class TextAnimTestGUI(bpy.types.Panel):
                         row = box.row(align=True)
                         row.prop(i, 'start_pct', slider=True)
                         row.prop(i, 'end_pct', slider=True)
+
+                        row=box.row(align=True)
+                        row.prop(i, 'location_active', text='', icon='MAN_TRANS')
+                        row.prop(i, 'scale_active', text='', icon='MAN_SCALE')
+                        row.prop(i, 'spacing_active', text='', icon='ARROW_LEFTRIGHT')
+                        row.prop(i, 'node_active', text='', icon='NODETREE')
                         
                         col=box.column(align=True)
                         
-                        box2=col.box()
-                        row = box2.row(align=True)
-                        row.label('Location')
-                        row.prop(i, 'location', text="")
-                                                
-                        box2=col.box()
-                        row = box2.row(align=True)
-                        row.label('Scale')
-                        row.prop(i, 'scale_offset', text='', icon='NOCURVE')
-                        row.separator()
-                        if i.unified_scale_toggle==True:
-                            row.prop(i, 'scale_unified', text='')
-                        else:
-                            row.prop(i, 'scale', text='')
-                        row.prop(i, 'unified_scale_toggle', text='', icon='MANIPUL')
-                            
-                        box2=col.box()
-                        row = box2.row(align=False)
-                        row.label('Spacing')
-                        row.prop(i, 'spacing_offset', text='', icon='NOCURVE')
-                        row.prop(i, 'spacing_type', text='')
-                        row.prop(i, 'spacing', text='')
+                        if i.location_active :
+                            box2=col.box()
+                            row = box2.row(align=True)
+                            row.label(icon='MAN_TRANS')
+                            row.separator()
+                            row.prop(i, 'location', text="")
 
-                        box2=col.box()
-                        row = box2.row(align=True)
-                        row.label('Node')
-                        row.prop(i, 'custom_node_data_base', text='Base')
-                        row.prop(i, 'custom_node_data_target', text='Target')
+                        if i.scale_active :        
+                            box2=col.box()
+                            row = box2.row(align=True)
+                            row.label(icon='MAN_SCALE')
+                            row.separator()
+                            row.prop(i, 'scale_offset', text='', icon='NOCURVE')
+                            row.separator()
+                            if i.unified_scale_toggle==True:
+                                row.prop(i, 'scale_unified', text='')
+                            else:
+                                row.prop(i, 'scale', text='')
+                            row.prop(i, 'unified_scale_toggle', text='', icon='MANIPUL')
+                        
+                        if i.spacing_active :
+                            box2=col.box()
+                            row = box2.row(align=True)
+                            row.label(icon='ARROW_LEFTRIGHT')
+                            row.separator()
+                            row.prop(i, 'spacing_offset', text='', icon='NOCURVE')
+                            row.prop(i, 'spacing_type', text='')
+                            row.prop(i, 'spacing', text='')
+
+                        if i.node_active :
+                            box2=col.box()
+                            row = box2.row(align=True)
+                            row.label(icon='NODETREE')
+                            row.separator()
+                            row.prop(i, 'custom_node_data_base', text='Base')
+                            row.prop(i, 'custom_node_data_target', text='Target')
                         
                                                 
             except IndexError:
