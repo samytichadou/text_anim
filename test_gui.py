@@ -75,6 +75,10 @@ class TextAnimTestGUI(bpy.types.Panel):
                         row.prop(i, 'end_pct', slider=True)
 
                         row=box.row(align=True)
+                        row.prop(i, 'overlap_value', slider = True)
+                        row.prop(i, 'smooth_in')
+                        row.prop(i, 'smooth_out')
+                        row.separator()
                         row.prop(i, 'location_active', text='', icon='MAN_TRANS')
                         row.prop(i, 'scale_active', text='', icon='MAN_SCALE')
                         row.prop(i, 'spacing_active', text='', icon='ARROW_LEFTRIGHT')

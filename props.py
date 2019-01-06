@@ -11,7 +11,7 @@ class TextAnimFontPropsColl(bpy.types.PropertyGroup):
     original_location = bpy.props.FloatVectorProperty(name="Original Location")
     original_scale = bpy.props.FloatVectorProperty(name="Original Scale", default=[1,1,1])
     original_spacing = bpy.props.FloatProperty(name="Original Spacing", default=0.0)
-    original_object_pass = bpy.props.IntProperty(name="Original Object Pass", default=0)
+    original_pass_index = bpy.props.IntProperty(name="Original Object Pass", default=0)
 
 ### ANIMATIONS ###
 class TextAnimAnimationColl(bpy.types.PropertyGroup):
@@ -25,6 +25,11 @@ class TextAnimAnimationColl(bpy.types.PropertyGroup):
     #range
     start_pct = bpy.props.IntProperty(name="Start", default=0, min=0, max=100, update=update_fct_main)
     end_pct = bpy.props.IntProperty(name="End", default=100, min=0, max=100, update=update_fct_main)
+
+    #interpolation
+    overlap_value = bpy.props.IntProperty(name="Overlap", default=0, min=0, max=100, update=update_fct_main)
+    smooth_in = bpy.props.FloatProperty(name="Smooth In", default=0, min=0, max=1, update=update_fct_main)
+    smooth_out = bpy.props.FloatProperty(name="Smooth Out", default=0, min=0, max=1, update=update_fct_main)
 
     #active props
     location_active = bpy.props.BoolProperty(name="Location Toggle", default=False, update=update_fct_main)

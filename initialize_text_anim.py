@@ -20,13 +20,15 @@ class InitializeTextAnim(bpy.types.Operator):
 
     def execute(self, context):
         text=context.active_object
-        body=text.data.body
 
         #add prop
         add_textanim_font_prop(text)
         
         #create controller and parent object
         control=create_controller(text)
+
+        #define original pass index
+        text.data.text_anim[0].original_pass_index = text.pass_index
         
         #split text and place it
         obj_list=split_text_char(text, control)
