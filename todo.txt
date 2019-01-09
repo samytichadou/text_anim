@@ -1,0 +1,8 @@
+finish specific reset functions
+change globaly text (font, body)
+clear text anim object and reset the original text object (perhaps without suppressing it in first place?)
+test with entire paragraph
+smooth evaluation of influence
+overlap value for smooth interpolation
+anchor point system (empty per character)
+rotation animation
